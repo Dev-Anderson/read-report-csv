@@ -6,20 +6,28 @@ import (
 	"fmt"
 	"log"
 	"os"
+	config "read-report-csv/infra/env"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
 
-	db, err := sql.Open("postgres", "host=localhost port=5432 user=postgres password=1234 dbname=teste sslmode=disable")
+	//carregando o env
+	e, err := config.GetEnv()
 	if err != nil {
-		panic(err)
+		log.Fatalln("Falha ao carregar o arquivo de configuracao", err)
 	}
 
-	// defer db.Close()
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", e.DBHost, e.DBPort, e.DBUser, e.DBPassword, e.DBName)
 
-	file, err := os.Open("assets/relatorio.csv")
+	db, err := sql.Open("postgres", dsn)
+	if err != nil {
+		log.Fatalln("Falha ao fazer a conexao com o banco de dados ", err)
+	}
+	defer db.Close()
+
+	file, err := os.Open(e.NameFile)
 	if err != nil {
 		panic(err)
 	}
