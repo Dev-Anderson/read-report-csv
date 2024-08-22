@@ -31,3 +31,15 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `NAME_REPORT`
 
+## Tarefas 
+1. Projeto inicial 
+    1.1. Abrir conexão com o banco de dados 
+    1.2. Ler o arquivo csv 
+    1.3. Gravar os dados no banco de dados 
+2. Melhorias no projeto
+    2.1. Adicionar as variáveis de ambiente para o banco de dados e arquivo de relatório; 
+3. Adicionar a criação da tabela no banco de dados configurado; 
+4. Melhorar a performance do projeto, pensar quando o relatório estiver com várias linhas
+4.1. Processamento do relatório linha a linha 
+4.2. Testar uma abordagem de transações agrupa vários inserts e depois commit um número "x"; 
+5. Estruturar o projeto; 
